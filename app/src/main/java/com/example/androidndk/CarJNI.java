@@ -2,6 +2,7 @@ package com.example.androidndk;
 
 
 import java.util.Date;
+import java.util.Random;
 
 public class CarJNI {
 
@@ -12,16 +13,6 @@ public class CarJNI {
     }
 
     public  int modelNumber;
-
-    public void showDetailAboutCar(int level, int modelNumber, int price) {
-        String result = "CarJNI{" +
-                "level=" + level +
-                ", modelNumber='" + modelNumber + '\'' +
-                ", price=" + price +
-                '}';
-        System.out.println(result);
-        Date date = new Date();
-    };
 
     public String getCuurTime(){
         long time = new Date().getTime();
@@ -36,9 +27,31 @@ public class CarJNI {
 
     public native void showCardFromJNI();
 
+    public native String testCallMethod();
+
     public native void testChangeField();
 
-    public native void testNewJavaBean();
+    public native long testNewJavaDate();
 
+
+    public native int testNewRandomParam(int random);
+
+
+    public int getRandom(int range){
+        return new Random().nextInt(range);
+    }
+
+    /**
+     * 测试调用带参数的方法
+     */
+    public native String testCallMethodParamList(int num, String str, int num2);
+
+    public String paramListMethod(int num1, String str, int num2) {
+        return str + " 年龄：" + num1 + " 成绩为：" + num2;
+    }
+
+    public  String describe(){
+        return "this is a beautiful car";
+    }
 
 }
