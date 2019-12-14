@@ -19,6 +19,7 @@ public class MainActivity extends BaseRecyclerViewActivity {
     public static final int JNI_CALL_POLYMORPHISM = 5;
     public static final int JNI_CALL_STRING = 6;
     public static final int JNI_ARRAT = 7;
+    public static final int JNI_EXCEPTION = 8;
 
 
 
@@ -37,6 +38,7 @@ public class MainActivity extends BaseRecyclerViewActivity {
         mBaseRecyclerBeen.add(new BaseRecyclerBean("JNI中调用Java中String",JNI_CALL_STRING));
         mBaseRecyclerBeen.add(new BaseRecyclerBean("JNI中调用Java中String",JNI_CALL_STRING));
         mBaseRecyclerBeen.add(new BaseRecyclerBean("JNI中调用Java中基本数组",JNI_ARRAT));
+        mBaseRecyclerBeen.add(new BaseRecyclerBean("JNI中异常处理",JNI_EXCEPTION));
 
 
     }
@@ -84,7 +86,9 @@ public class MainActivity extends BaseRecyclerViewActivity {
                 String aserbao = TestJNIBean.testChangeString("aserbao");
                 mBaseRecyclerTv.setText(aserbao);
                 break;
-
+            case JNI_EXCEPTION:
+                mTestJNIBean.testThrowException();
+                break;
         }
     }
 }
