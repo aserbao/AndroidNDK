@@ -58,13 +58,17 @@ public class TestJNIBean{
     public static native String testGetStringUTFRegion(String inputString);
     public static native String testChangeString(String inputString);
 
-
-
     /**
      * 测试在C/C++中操作Java中的基本数组
      */
     int[] testArrays = {1,2,3,4,5,8,6};
     public native void testGetTArrayElement();
+
+    public native void testThrowException();
+    private void throwException() throws NullPointerException{
+        throw new NullPointerException("this is an NullPointerException");
+    }
+
 
     /**
      * A native method that is implemented by the 'native-lib' native library,

@@ -321,4 +321,22 @@ Java_com_example_androidndk_TestJNIBean_testGetTArrayElement(JNIEnv *env, jobjec
 
     LOGD("---------------数据处理完成---------------");
 
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_example_androidndk_TestJNIBean_testThrowException(JNIEnv *env, jobject instance) {
+
+    jclass jclazz = env -> GetObjectClass(instance);
+    jmethodID  throwExc = env -> GetMethodID(jclazz,"throwException","()V");
+    if (throwExc != NULL) return;
+    env -> CallVoidMethod(instance,throwExc);
+    jthrowable excOcc = env -> ExceptionOccurred();
+    if (excOcc){
+        jclass  newExcCls ;
+        env -> ExceptionDescribe();//打印异常堆栈信息
+        env -> ExceptionClear();
+        jclass newExcClazz = env -> FindClass("java/lang/IllegalArgumentException");
+        if (newExcClazz == NULL) return;
+        env -> ThrowNew(newExcClazz,"this is a IllegalArgumentException");
+    }
+
 }
